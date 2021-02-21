@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 
-Route::resource('/vacancy', VacancyController::class);
+Route::resource('/vacancy', VacancyController::class)->middleware('auth');
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::match(['GET', 'POST'], '/logout', [LoginController::class, 'logout'])->name('logout');
+
