@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VacancyStoreRequest;
 use App\Models\Status;
 use App\Models\Vacancy;
 use Illuminate\Contracts\View\View;
@@ -35,12 +36,22 @@ class VacancyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  VacancyStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VacancyStoreRequest $request)
     {
-        dd('store');
+        $status = Status::where('name', $request->status)->firstOrFail();
+        $vacancy = new Vacancy();
+
+        $vacancy->title = $request->title;
+        $vacancy->position = $request->position;
+        $vacancy->company_name = $request->company_name;
+        $vacancy->user_id = Auth::id();
+        $vacancy->status_id = $status->id;
+        $vacancy->save();
+
+        return response()->view('pages.vacancies.create', ['message' => 'New vacancy created.'], 200);
     }
 
     /**

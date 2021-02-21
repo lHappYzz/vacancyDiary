@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('vacancy.index') }}">My vacancies</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('vacancy.create') }}">Create vacancy</a>
+                    </li>
                 </ul>
                 {{--Right side--}}
                 <ul class="navbar-nav ms-auto">
