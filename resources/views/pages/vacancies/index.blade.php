@@ -7,7 +7,10 @@
             <div class="card m-2 text-center">
                 <div class="card-body" style="color: {{ $vacancy->status->hex_color }};">
                     <p class="card-title">
-                        <small class="bg-light" style="position: absolute; right: 1rem; top: -0.9em; color: {{$vacancy->status->hex_color}}">{{ $vacancy->status->name }}</small>
+                        <small class="bg-light" style="position: absolute; right: 1rem; top: -0.9em; color: {{$vacancy->status->hex_color}}">
+                            {{ $vacancy->status->name }}
+                            {{ $vacancy->updated_at->diffForHumans() }}
+                        </small>
                         <span>{{ $vacancy->position }}</span>
                         <small class="fs-6 text-secondary">at&nbsp{{ $vacancy->company_name }}</small>
                     </p>
