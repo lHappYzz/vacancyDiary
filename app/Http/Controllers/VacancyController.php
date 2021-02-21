@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use App\Models\Vacancy;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VacancyController extends Controller
 {
@@ -15,17 +17,19 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        return view('pages.vacancies.index');
+        $vacancies = Vacancy::all();
+        return view('pages.vacancies.index', ['vacancies' => $vacancies]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
-        dd('create');
+        $statuses = Status::all();
+        return view('pages.vacancies.create', ['statuses' => $statuses]);
     }
 
     /**
@@ -36,7 +40,7 @@ class VacancyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('store');
     }
 
     /**

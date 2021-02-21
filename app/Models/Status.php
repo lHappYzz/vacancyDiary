@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vacancy extends Model
+class Status extends Model
 {
     use HasFactory;
 
-    protected $table = 'vacancy';
+    protected $table = 'status';
 
-    public function status() {
-        return $this->belongsTo(Status::class);
-    }
 }
