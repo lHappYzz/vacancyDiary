@@ -14,7 +14,7 @@
             <div class="card m-2 text-center" style="width: 100%; max-width: 20rem">
                 <div class="card-body" style="color: {{ $vacancy->status->hex_color }};">
                     <p class="card-title">
-                        <small class="bg-light" style="position: absolute; right: 1rem; top: -0.9em; color: {{$vacancy->status->hex_color}}">
+                        <small style="background-color: white; position: absolute; right: 1rem; top: -0.9em; color: {{$vacancy->status->hex_color}}">
                             {{ $vacancy->status->name }}
                             {{ $vacancy->updated_at->diffForHumans() }}
                         </small>
