@@ -26,15 +26,15 @@
             </div>
             <div class="mb-3">
                 <label for="position" class="form-label">Vacancy position</label>
-                <input type="text" name="position" id="position" class="form-control">
+                <input type="text" name="position" id="position" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="company_name" class="form-label">Company name</label>
-                <input type="text" name="company_name" id="company_name" class="form-control">
+                <input type="text" name="company_name" id="company_name" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Vacancy status</label>
-                <select id="status" name="status" class="form-select">
+                <select id="status" name="status" class="form-select" required>
                     @foreach($statuses as $status)
                         <option name="{{ $status->name }}">{{ $status->name }}</option>
                     @endforeach
