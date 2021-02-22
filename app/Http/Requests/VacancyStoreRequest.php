@@ -17,6 +17,16 @@ class VacancyStoreRequest extends FormRequest
     }
 
     /**
+     * This method will be called after successful validation
+     */
+    public function passedValidation() {
+        //In case the vacancy title is not passed then we initialize it with an empty value to avoid null insertion
+        if (is_null($this->title)) {
+            $this->title = '';
+        }
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
