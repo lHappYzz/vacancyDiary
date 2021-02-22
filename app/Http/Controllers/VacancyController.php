@@ -37,7 +37,7 @@ class VacancyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  VacancyStoreRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(VacancyStoreRequest $request)
     {
@@ -51,7 +51,8 @@ class VacancyController extends Controller
         $vacancy->status_id = $status->id;
         $vacancy->save();
 
-        return response()->view('pages.vacancies.create', ['message' => 'New vacancy created.'], 200);
+        return redirect(route('vacancy.create'))
+            ->with(['message' => 'New vacancy created.']);
     }
 
     /**
