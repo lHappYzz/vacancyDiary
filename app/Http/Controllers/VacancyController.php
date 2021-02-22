@@ -91,11 +91,19 @@ class VacancyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vacancy  $vacancy
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Vacancy $vacancy
+     * @return \Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Vacancy $vacancy)
     {
-        //
+        try {
+            $vacancy->delete();
+        } catch (\Exception $e) {
+            return redirect(route('vacancy.index'))
+                ->with(['message' => 'An error occurred while deleting the vacancy.']);
+        }
+        return redirect(route('vacancy.index'))
+            ->with(['message' => 'The vacancy successfully deleted.']);
     }
 }
