@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Status;
 use App\Models\vacancy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,10 +26,10 @@ class VacancyFactory extends Factory
             'title' => $this->faker->jobTitle,
             'position' => 'PHP dev',
             'company_name' => $this->faker->company,
-            'status_id' => 1,
+            'status_id' => Status::all()->random()->id,
             'user_id' => 1,
             'created_at' => now(),
-            'updated_at' => null,
+            'updated_at' => now(),
         ];
     }
 }
