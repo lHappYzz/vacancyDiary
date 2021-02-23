@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\VacancyEditRequest;
 use App\Http\Requests\VacancyStoreRequest;
 use App\Models\Status;
 use App\Models\Vacancy;
@@ -70,23 +71,42 @@ class VacancyController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Vacancy  $vacancy
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function edit(Vacancy $vacancy)
     {
-        //
+        $statuses = Status::all();
+        return view('pages.vacancies.edit', ['vacancy' => $vacancy, 'statuses' => $statuses]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  VacancyEditRequest  $request
      * @param  \App\Models\Vacancy  $vacancy
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Vacancy $vacancy)
+    public function update(VacancyEditRequest $request, Vacancy $vacancy)
     {
-        //
+        $status = Status::where('name', $request->status)->firstOrFail();
+
+        //If the vacancy status was changed then we need to change status_assigned_at field too
+        if ($vacancy->status->name != $status->name) {
+            $status_assigned_at = date('Y-m-d H:i:s');
+        } else {
+            $status_assigned_at = $vacancy->status_assigned_at;
+        }
+
+        $vacancy->update([
+            'title' => $request->title,
+            'position' => $request->position,
+            'company_name' => $request->company_name,
+            'status_id' => $status->id,
+            'status_assigned_at' => $status_assigned_at,
+        ]);
+
+        return redirect(route('vacancy.index'))
+            ->with(['message' => 'The vacancy successfully updated']);
     }
 
     /**

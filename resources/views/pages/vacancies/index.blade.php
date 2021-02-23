@@ -16,7 +16,7 @@
                     <p class="card-title">
                         <small style="background-color: white; position: absolute; right: 1rem; top: -0.9em; color: {{$vacancy->status->hex_color}}">
                             {{ $vacancy->status->name }}
-                            {{ $vacancy->updated_at->diffForHumans() }}
+                            {{ $vacancy->status_assigned_at->diffForHumans() }}
                         </small>
                         <span>{{ $vacancy->position }}</span>
                         <small class="fs-6 text-secondary">at&nbsp{{ $vacancy->company_name }}</small>
@@ -26,7 +26,7 @@
                     </p>
                     <div class="row">
                         <div class="col">
-                            <a href="#" class="card-link btn btn-outline-primary mb-2" style="width: 100%">Edit status</a>
+                            <a href="{{ route('vacancy.edit', ['vacancy' => $vacancy->id]) }}" class="card-link btn btn-outline-primary mb-2" style="width: 100%">Edit status</a>
                             <form id="deleteVacancy" action="{{ route('vacancy.destroy', ['vacancy' => $vacancy->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
