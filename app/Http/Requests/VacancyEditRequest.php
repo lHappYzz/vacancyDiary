@@ -27,7 +27,7 @@ class VacancyEditRequest extends FormRequest
             'title' => 'max:254',
             'position' => 'required|max:40',
             'company_name' => 'required|max:40',
-            'link' => 'required|URL|max:2083',
+            'link' => 'required|url|max:2083',
             'status' => 'required|exists:status,name',
         ];
     }
