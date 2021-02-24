@@ -1,0 +1,14 @@
+.card {
+    width: 100%;
+    max-width: 20rem
+}
+.card-label {
+    font-size: 0.875rem;
+    background-color: white;
+    position: absolute;
+    right: 1rem;
+    top: -0.9em;
+}
+.card-link {
+    width: 100%;
+}
