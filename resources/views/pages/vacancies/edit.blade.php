@@ -30,6 +30,10 @@
                 <input type="text" name="position" id="position" class="form-control" value="{{ $vacancy->position }}" required>
             </div>
             <div class="mb-3">
+                <label for="link" class="form-label">Vacancy link</label>
+                <input type="text" name="link" id="link" class="form-control" value="{{ $vacancy->link }}" required>
+            </div>
+            <div class="mb-3">
                 <label for="company_name" class="form-label">Company name</label>
                 <input type="text" name="company_name" id="company_name" class="form-control" value="{{ $vacancy->company_name }}" required>
             </div>

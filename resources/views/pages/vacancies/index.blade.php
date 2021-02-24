@@ -18,7 +18,7 @@
                             {{ $vacancy->status->name }}
                             {{ $vacancy->status_assigned_at->diffForHumans() }}
                         </small>
-                        <span>{{ $vacancy->position }}</span>
+                        <a target="_blank" style="color: inherit" class="link" href="{{ $vacancy->link }}">{{ $vacancy->position }}</a>
                         <small class="fs-6 text-secondary">at&nbsp{{ $vacancy->company_name }}</small>
                     </p>
                     <p class="card-text">

@@ -47,6 +47,7 @@ class VacancyController extends Controller
 
         $vacancy->title = $request->title;
         $vacancy->position = $request->position;
+        $vacancy->link = $request->link;
         $vacancy->company_name = $request->company_name;
         $vacancy->user_id = Auth::id();
         $vacancy->status_id = $status->id;
@@ -100,6 +101,7 @@ class VacancyController extends Controller
         $vacancy->update([
             'title' => $request->title,
             'position' => $request->position,
+            'link' => $request->link,
             'company_name' => $request->company_name,
             'status_id' => $status->id,
             'status_assigned_at' => $status_assigned_at,
