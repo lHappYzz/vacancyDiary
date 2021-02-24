@@ -51,6 +51,7 @@ class VacancyController extends Controller
         $vacancy->company_name = $request->company_name;
         $vacancy->user_id = Auth::id();
         $vacancy->status_id = $status->id;
+        $vacancy->status_assigned_at = now();
         $vacancy->save();
 
         return redirect(route('vacancy.create'))
