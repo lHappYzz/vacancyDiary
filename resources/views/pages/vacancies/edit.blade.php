@@ -3,8 +3,9 @@
 
 @section('content')
     <div class="wrapper d-flex flex-wrap justify-content-center">
-        <form action="{{ route('vacancy.store') }}" style="width: 60%" method="post">
+        <form action="{{ route('vacancy.update', ['vacancy' => $vacancy->id]) }}" style="width: 60%" method="post">
             @csrf
+            @method('PUT')
 
             @if(session('message'))
                 <div class="alert alert-info">
@@ -22,25 +23,25 @@
 
             <div class="mb-3">
                 <label for="title" class="form-label">Vacancy title</label>
-                <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}">
+                <input type="text" name="title" id="title" class="form-control" value="{{ $vacancy->title }}">
             </div>
             <div class="mb-3">
                 <label for="position" class="form-label">Vacancy position</label>
-                <input type="text" name="position" id="position" class="form-control" value="{{ old('position') }}" required>
+                <input type="text" name="position" id="position" class="form-control" value="{{ $vacancy->position }}" required>
             </div>
             <div class="mb-3">
                 <label for="link" class="form-label">Vacancy link</label>
-                <input type="text" name="link" id="link" class="form-control" value="{{ old('link') }}" required>
+                <input type="text" name="link" id="link" class="form-control" value="{{ $vacancy->link }}" required>
             </div>
             <div class="mb-3">
                 <label for="company_name" class="form-label">Company name</label>
-                <input type="text" name="company_name" id="company_name" class="form-control" value="{{ old('company_name') }}" required>
+                <input type="text" name="company_name" id="company_name" class="form-control" value="{{ $vacancy->company_name }}" required>
             </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Vacancy status</label>
                 <select id="status" name="status" class="form-select" required>
                     @foreach($statuses as $status)
-                        <option name="{{ $status->name }}">{{ $status->name }}</option>
+                        <option @if($status->name == $vacancy->status->name) selected @endif name="{{ $status->name }}">{{ $status->name }}</option>
                     @endforeach
                 </select>
             </div>
