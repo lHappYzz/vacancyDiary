@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VacancyEditRequest;
 use App\Http\Requests\VacancyStoreRequest;
 use App\Models\Status;
+use App\Models\User;
 use App\Models\Vacancy;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Auth;
 
 class VacancyController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Vacancy::class, 'vacancy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +26,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $vacancies = Vacancy::all();
+        $vacancies = Auth::user()->vacancies;
         return view('pages.vacancies.index', ['vacancies' => $vacancies]);
     }
 

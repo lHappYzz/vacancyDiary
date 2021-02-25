@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,7 @@ Route::resource('/vacancy', VacancyController::class)->middleware('auth');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::match(['GET', 'POST'], '/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
 

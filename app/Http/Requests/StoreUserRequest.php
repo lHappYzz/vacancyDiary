@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class VacancyEditRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,6 +15,7 @@ class VacancyEditRequest extends FormRequest
     public function authorize()
     {
         return true;
+//        return !Auth::check();
     }
 
     /**
@@ -24,11 +26,9 @@ class VacancyEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'max:254',
-            'position' => 'required|max:40',
-            'company_name' => 'required|max:40',
-            'link' => 'required|url|max:2083',
-            'status' => 'required|exists:status,name',
+            'name' => 'required|alpha|max:254',
+            'email' => 'required|email|unique:users,email|max:254',
+            'password' => 'required|confirmed|max:254',
         ];
     }
 }
