@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class VacancyController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Vacancy::class, 'vacancy');
+    }
+
     /**
      * Display a listing of the resource.
      *
