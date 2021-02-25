@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">{{ env('app_name') }}</a>
+            <a class="navbar-brand" href="{{ route('/') }}">{{ env('app_name') }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
