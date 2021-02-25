@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VacancyEditRequest;
 use App\Http\Requests\VacancyStoreRequest;
 use App\Models\Status;
+use App\Models\User;
 use App\Models\Vacancy;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $vacancies = Vacancy::all();
+        $vacancies = Auth::user()->vacancies;
         return view('pages.vacancies.index', ['vacancies' => $vacancies]);
     }
 

@@ -40,7 +40,7 @@
             </div>
 
         @empty
-            <div class="card m-2 text-center">
+            <div class="d-flex justify-content-center" style="width: 100%">
                 <h1>There is nothing yet, create new vacancy</h1>
             </div>
         @endforelse
